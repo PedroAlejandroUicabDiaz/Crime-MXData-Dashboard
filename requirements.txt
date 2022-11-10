@@ -1,0 +1,4 @@
+cmake
+streamlit
+flask
+requests
