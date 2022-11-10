@@ -2,3 +2,8 @@ cmake
 streamlit
 flask
 requests
+seaborn
+matplotlib
+plotly-express
+pandas
+numpy
