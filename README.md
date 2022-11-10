@@ -15,7 +15,7 @@ requirements.txt contains all the name resources required in this python project
 - `/tests/*` testing df
 - `/utils/*` all microfunctions used in the project
 - `.gitignored` git ignored modified
-- `main.py` contains the dashboard and has a basic testing of plotly manipulation.
+- `main.py` contains the dashboard and has a basic testing of plotly manipulation. [data](https://redfin-public-data.s3.us-west-2.amazonaws.com/redfin_market_tracker/state_market_tracker.tsv000.gz)
 
 **9 november 2022 0.0.3**
 - git ignore files `.gitignore` unwanted files deletion.
