@@ -1,26 +1,31 @@
 import streamlit as st
 from streamlit_folium import folium_static
 from libs.st_utils import map_crime_zoom
+from libs.fdf_articles import FdfArticles
 
+
+articles = FdfArticles()
+
+if 'data' not in st.session_state:
+    st.session_state['data']:'FdfArticles' | None = None
 
 with st.sidebar:
-    st.title('Hello')
+    st.markdown('#### Choose a dataset:')
 
-import pandas as pd
+    selection_df:str = st.selectbox(label='',options=articles.names)
+    if selection_df:
+        st.session_state['data'] = articles.articles[selection_df]
+    
+    st.markdown('#### Choose a target:')
+    selection_target:str = st.selectbox(label='', options=st.session_state['data'].features)
+    if selection_target:
+        st.session_state['data'].feature = selection_target
 
-df1 = pd.read_csv('./data/MX-DATA-UPDATED.csv')
-df2 = pd.read_csv('./data/MX_CRIME_DATA_INEGI_P1.csv')
+content = st.empty()
 
-
-
-
-# df_loc_fet = redifine_locations(df2)
-
-df_loc_fet = pd.read_csv('./data/featured.csv')
-
-
-m = map_crime_zoom(df1, 'ROBO A NEGOCIO C.V.')
-
-
-st_data = folium_static(m, width=725)
+with content.container():
+    try:
+        folium_static(st.session_state['data'].show_map(zoom=True))
+    except:
+        st.write('Maybe the data selected is not able to show')
 
