@@ -7,3 +7,6 @@ matplotlib
 plotly-express
 pandas
 numpy
+geopy
+folium
+streamlit-folium
