@@ -3,6 +3,7 @@ import folium
 from folium.plugins import HeatMap
 import pandas as pd
 from utils.filters import unwanted
+from ml_models.model import pd_logistic_rg
 
 
 @dataclass
@@ -11,6 +12,7 @@ class Article:
         self.df:'pd.DataFrame' = df
         self.feature:str = feature
         self.features:list[str] = [n for n in list(df.columns) if n not in unwanted]
+        self.model: None | 'pd_logistic_rg' = None
     
     def show_map(self, zoom:bool=False) -> 'folium.Map':
         df_crime= self.df[['LATITUDE', 'LONGITUDE', self.feature]].copy()
